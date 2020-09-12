@@ -1,0 +1,7 @@
+module.exports = {
+  env: {
+    REACT_APP_CONTENTFUL_SPACE: "yiouedw2y41k",
+    REACT_APP_CONTENTFUL_ENVIRONMENT: "master",
+    REACT_APP_CONTENTFUL_ACCESS_TOKEN: "kvxFwRUeNyhk07QDPUPff0K3hO0aAik57K44G51S1XU",
+  },
+};

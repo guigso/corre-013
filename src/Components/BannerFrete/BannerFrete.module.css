@@ -1,0 +1,27 @@
+.marquee {
+  height: 40px;
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  background: #c4c4c4;
+}
+.marquee * {
+  padding-left: 100%;
+  animation: marquee 3s linear infinite;
+}
+
+.body {
+  text-transform: uppercase;
+  font-weight: bold !important;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-100%, 0);
+  }
+}
