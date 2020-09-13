@@ -1,34 +1,26 @@
 import Router from "next/router";
-import { Button, Container, Grid, Typography } from "@material-ui/core";
+import PropTypes from "prop-types";
+
+import { Button, Container, Grid } from "@material-ui/core";
+
 import Header from "../src/Components/Header";
 import BannerFrete from "../src/Components/BannerFrete";
-import client from "../src/services/api";
+import FeaturedSlider from "../src/Components/FeaturedSlider";
 
-export default function Home({ posts }) {
+import { getAllProductsForFeatured } from "../src/services/api";
+
+export default function Home({ featured }) {
   return (
     <>
       <Header />
-      <Container>
+      <Container style={{ marginTop: 16 }}>
         <Grid container justify='center' spacing={3}>
           <Grid item xs={12}>
             <BannerFrete />
           </Grid>
-          {posts.map((post) => (
-            <Grid item xs={12} key={post.sys.id}>
-              <Typography variant='body1'>{post.fields.name}</Typography>
-              <Typography variant='body1'>{post.fields.price}</Typography>
-              <Typography variant='body1'>{post.fields.discount}</Typography>
-              <Typography variant='body1'>{post.fields.categories}</Typography>
-              {post.fields.photos.map((photo) => (
-                <img
-                  style={{ width: 100, height: 180 }}
-                  key={photo.sys.id}
-                  src={photo.fields.file.url}
-                  alt={photo.fields.file.title}
-                />
-              ))}
-            </Grid>
-          ))}
+          <Grid item xs={12}>
+            <FeaturedSlider slides={featured} />
+          </Grid>
           <Grid item xs={6}>
             <Button
               onClick={() => Router.push("/produtos")}
@@ -45,11 +37,14 @@ export default function Home({ posts }) {
 }
 
 export async function getStaticProps() {
-  const res = await client.getEntries({ content_type: "product" });
-  const posts = res.items;
+  const featured = await getAllProductsForFeatured();
   return {
     props: {
-      posts,
+      featured,
     },
   };
 }
+
+Home.propTypes = {
+  featured: PropTypes.arrayOf(Object).isRequired,
+};

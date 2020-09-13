@@ -6,4 +6,32 @@ const client = createClient({
   accessToken: process.env.REACT_APP_CONTENTFUL_ACCESS_TOKEN || "",
 });
 
-export default client;
+function parsePost({ fields }) {
+  return {
+    name: fields.name,
+    photos: fields.photos,
+    slug: fields.slug,
+    categories: fields.categories,
+    discount: fields.discount,
+    price: fields.price,
+  };
+}
+
+function parseProductsEntries(entries, cb = parsePost) {
+  return entries?.items?.map(cb);
+}
+
+export async function getAllProductsForFeatured() {
+  const entries = await client.getEntries({
+    content_type: "product",
+  });
+  return parseProductsEntries(entries);
+}
+
+export async function getProductBySlug(slug) {
+  const entries = await client.getEntries({
+    content_type: "product",
+    "fields.slug[in]": slug,
+  });
+  return parseProductsEntries(entries);
+}
