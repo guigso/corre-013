@@ -24,6 +24,7 @@ function parseProductsEntries(entries, cb = parsePost) {
 export async function getAllProductsForFeatured() {
   const entries = await client.getEntries({
     content_type: "product",
+    limit: 2,
   });
   return parseProductsEntries(entries);
 }
@@ -32,6 +33,14 @@ export async function getProductBySlug(slug) {
   const entries = await client.getEntries({
     content_type: "product",
     "fields.slug[in]": slug,
+  });
+  return parseProductsEntries(entries);
+}
+
+export async function searchProducts(searchValue) {
+  const entries = await client.getEntries({
+    content_type: "product",
+    "fields.name[match]": searchValue,
   });
   return parseProductsEntries(entries);
 }

@@ -1,2 +1,15 @@
 @import "../../../node_modules/slick-carousel/slick/slick-theme.css";
 @import "../../../node_modules/slick-carousel/slick/slick.css";
+
+.slideItem {
+}
+
+.slideLink {
+  display: flex;
+  max-height: 350px;
+}
+
+.slideImage {
+  max-height: 100%;
+  width: 100%;
+}

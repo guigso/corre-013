@@ -1,0 +1,48 @@
+.cardWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cardWrapper a {
+  text-decoration: none;
+  position: relative;
+}
+
+.dashed {
+  text-decoration: line-through;
+  margin-right: 6px;
+}
+
+.discountTag {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: -5px;
+  right: -12px;
+  background: red;
+  color: #fff;
+  width: 40px;
+  height: 20px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.title {
+  margin: 0;
+  text-align: center;
+  color: #2e2e2e;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  height: 48px;
+  font-size: 1.25rem;
+  line-height: 24px;
+}
+
+.cardImage {
+  height: 160px;
+}
